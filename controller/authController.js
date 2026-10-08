@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/UserModel"); 
+const User = require("../models/userModel"); 
 const jwt = require("jsonwebtoken");
 const SECRET_TOKEN = process.env.JWT_SECRET || "hello-world-crm";
 
@@ -75,7 +75,7 @@ const accesstoken = jwt.sign(
 },
 SECRET_TOKEN,
 {
-    expiresIn: 60*60,
+    expiresIn: 60*60 * 10, //10 days
 }
 )
 

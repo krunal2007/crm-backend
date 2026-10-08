@@ -12,6 +12,12 @@ notificationRouter.get(
 );
 
 notificationRouter.put(
+  "/read-all",
+  authController.verifytoken,
+  notificationController.markAllAsRead
+);
+
+notificationRouter.put(
   "/:id/read",
   authController.verifytoken,
   notificationController.markAsRead

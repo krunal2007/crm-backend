@@ -21,6 +21,31 @@ exports.getNotifications = async (req, res) => {
 };
 
 
+// Mark all notifications as read for logged-in user
+exports.markAllAsRead = async (req, res) => {
+  try {
+    await Notification.updateMany(
+      {
+        user: req.user._id,
+        read: false,
+      },
+      {
+        $set: { read: true },
+      }
+    );
+
+    return res.status(200).json({
+      message: "All notifications marked as read",
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Error updating notifications",
+    });
+  }
+};
+
 // Mark one notification as read
 exports.markAsRead = async (req, res) => {
   try {
